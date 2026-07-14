@@ -1,0 +1,828 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Sision Junior School — Timetable System</title><style>:root{--navy:#1a2744;--gold:#b8860b;--gold-light:#f5e6b0;--blue-light:#dce9f5;--white:#fff;--gray:#f0f4f8;--border:#c8d8e8;--red:#c0392b;--green:#27ae60;--orange:#e67e22;}*{box-sizing:border-box;margin:0;padding:0;}body{font-family:'Segoe UI',Arial,sans-serif;background:#eef2f7;color:var(--navy);}.hdr{background:var(--navy);color:var(--white);padding:11px 18px;display:flex;align-items:center;justify-content:space-between;}.hdr .t{font-size:.95rem;font-weight:700;letter-spacing:1px;}.hdr .s{font-size:.7rem;color:#aac;margin-top:2px;}.tabs{display:flex;background:var(--navy);border-bottom:3px solid var(--gold);padding:0 18px;flex-wrap:wrap;}.tb{padding:9px 15px;color:#8899bb;font-size:.77rem;font-weight:600;cursor:pointer;border:none;background:none;border-bottom:3px solid transparent;margin-bottom:-3px;}.tb.active{color:var(--gold);border-bottom-color:var(--gold);}.panel{display:none;padding:15px 18px;}.panel.active{display:block;}.card{background:var(--white);border-radius:6px;border:1px solid var(--border);padding:14px;margin-bottom:12px;}.card h3{font-size:.82rem;font-weight:700;color:var(--navy);margin-bottom:9px;border-bottom:2px solid var(--gold);padding-bottom:4px;}.frow{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:7px;align-items:flex-end;}label{font-size:.72rem;font-weight:600;color:#556;margin-bottom:2px;display:block;}input,select{border:1px solid var(--border);border-radius:4px;padding:5px 8px;font-size:.78rem;color:var(--navy);background:var(--white);min-width:90px;outline:none;}input:focus,select:focus{border-color:var(--navy);}.btn{padding:5px 13px;border-radius:4px;border:none;cursor:pointer;font-size:.75rem;font-weight:600;}.bp{background:var(--navy);color:var(--white);}.bg{background:var(--gold);color:var(--white);}.bd{background:var(--red);color:var(--white);}.bs{background:var(--green);color:var(--white);}.bo{background:var(--orange);color:var(--white);}.bsm{padding:3px 8px;font-size:.68rem;}.dt{width:100%;border-collapse:collapse;font-size:.75rem;}.dt th{background:var(--navy);color:var(--white);padding:6px 7px;text-align:left;font-size:.7rem;}.dt td{padding:5px 7px;border-bottom:1px solid var(--border);vertical-align:middle;}.dt tr:hover td{background:var(--gray);}.badge{display:inline-block;padding:1px 6px;border-radius:8px;font-size:.65rem;font-weight:700;}.bn{background:var(--navy);color:white;}.bg2{background:var(--green);color:white;}.br{background:var(--red);color:white;}.info{background:#eef4fb;border-left:3px solid var(--navy);padding:6px 9px;border-radius:3px;font-size:.73rem;margin-bottom:7px;}.alert{padding:7px 11px;border-radius:4px;font-size:.75rem;margin-bottom:8px;font-weight:600;}.as{background:#d5f5e3;color:#1e8449;border-left:4px solid var(--green);}.ae{background:#fde8e8;color:var(--red);border-left:4px solid var(--red);}.ai{background:#eef4fb;color:var(--navy);border-left:4px solid var(--navy);}.empty{text-align:center;color:#aaa;padding:20px;font-size:.78rem;}.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px;}@media(max-width:650px){.g2{grid-template-columns:1fr;}}.ag{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:9px;}.ai2{background:var(--gray);border-radius:5px;padding:9px;border-left:3px solid var(--navy);}.crow{display:flex;gap:6px;align-items:flex-end;flex-wrap:wrap;margin-bottom:5px;padding:6px;background:var(--gray);border-radius:4px;}.vsel{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px;}.vb{padding:4px 12px;border-radius:14px;border:2px solid var(--navy);color:var(--navy);font-size:.73rem;font-weight:600;cursor:pointer;background:var(--white);}.vb.active,.vb:hover{background:var(--navy);color:var(--white);}.mo{display:none;position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:1000;align-items:center;justify-content:center;}.mo.open{display:flex;}.md{background:var(--white);border-radius:7px;padding:18px;min-width:290px;max-width:96vw;width:480px;box-shadow:0 6px 24px rgba(0,0,0,.18);max-height:90vh;overflow-y:auto;}.md h3{font-size:.87rem;color:var(--navy);margin-bottom:11px;font-weight:700;}.ma{display:flex;gap:7px;justify-content:flex-end;margin-top:12px;}.ctt{border-collapse:collapse;width:100%;min-width:750px;font-size:.72rem;}.ctt th,.ctt td{border:1px solid #b0c4d8;}.ctt .ch{background:var(--navy);color:var(--white);text-align:center;padding:4px 2px;font-size:.68rem;font-weight:600;white-space:nowrap;}.ctt .ch2{background:var(--navy);color:#aac;text-align:center;padding:2px;font-size:.6rem;}.ctt .dy{background:var(--navy);color:var(--white);font-weight:700;text-align:center;font-size:.78rem;padding:3px 6px;letter-spacing:.5px;}.ctt .cl{background:var(--blue-light);color:var(--navy);font-weight:700;font-size:.67rem;text-align:center;padding:3px 4px;white-space:nowrap;}.ctt .pc{background:var(--gold-light);color:var(--gold);font-weight:900;font-size:1.1rem;text-align:center;vertical-align:middle;padding:2px 0;width:28px;}.ctt .lc{background:var(--blue-light);text-align:center;padding:2px 1px;min-width:62px;vertical-align:middle;cursor:pointer;}.ctt .lc:hover{background:#c8dff0;}.ctt .lc .ls{font-weight:700;color:var(--navy);font-size:.7rem;display:block;}.ctt .lc .lt{color:#557799;font-size:.62rem;display:block;}.ctt .lc.empty-lc{background:var(--white);}.ctt .lc.dbl-l{border-right:none;background:#c5d8f0;}.ctt .lc.dbl-r{border-left:none;background:#c5d8f0;}.ttt{border-collapse:collapse;width:100%;min-width:750px;font-size:.72rem;}.ttt th,.ttt td{border:1px solid #333;}.ttt .th{background:#fff;text-align:center;padding:3px 2px;font-weight:700;font-size:.7rem;}.ttt .th2{background:#fff;text-align:center;padding:2px;font-size:.6rem;color:#333;}.ttt .dy{font-weight:700;text-align:center;padding:3px 5px;font-size:.78rem;background:#fff;width:30px;}.ttt .pc{background:#fff;font-weight:900;font-size:1rem;text-align:center;vertical-align:middle;padding:2px 0;width:26px;color:#000;}.ttt .lc{background:#fff;text-align:center;padding:3px 2px;min-width:62px;vertical-align:middle;cursor:pointer;min-height:38px;}.ttt .lc:hover{background:#f5f5f5;}.ttt .lc .ls{font-weight:700;font-size:.7rem;display:block;color:#000;}.ttt .lc .lt{font-size:.6rem;display:block;color:#333;}.tsummary{font-size:.72rem;margin-top:8px;border:1px solid #ccc;padding:6px 10px;background:#f9f9f9;border-radius:4px;}@media print{body{background:white;}.tabs,.hdr,.vsel,.no-print,.btn,button{display:none!important;}.panel{display:block!important;padding:0;}.card{border:none;box-shadow:none;padding:0;}}</style></head><body><div class="hdr"><div><div class="t">SISION JUNIOR SCHOOL — NAIVASHA</div><div class="s">CBC Timetable System &nbsp;|&nbsp; Term: <span id="hdr-term">2</span> &nbsp;|&nbsp; Year: <span id="hdr-year">2026</span></div></div><div style="color:#aac;font-size:.72rem;font-weight:600">Timetable Generator v3</div></div><div class="tabs"><button class="tb active" onclick="showTab('setup',this)">⚙️ Setup</button><button class="tb" onclick="showTab('subjects',this)">📚 Subjects</button><button class="tb" onclick="showTab('assign',this)">👨‍🏫 Assignments</button><button class="tb" onclick="showTab('constraints',this)">🔒 Constraints</button><button class="tb" onclick="showTab('generate',this)">⚡ Generate</button><button class="tb" onclick="showTab('view',this)">📋 Class View</button><button class="tb" onclick="showTab('teacher',this)">👤 Teacher View</button><button class="tb" onclick="showTab('special',this)">📝 Special</button></div><div id="tab-setup" class="panel active"><div class="g2"><div class="card"><h3>🏫 School Settings</h3><div class="frow"><div><label>School Name</label><input id="set-school" value="SISION JUNIOR SCHOOL — NAIVASHA" style="min-width:220px"></div></div><div class="frow"><div><label>Term</label><select id="set-term"><option>1</option><option selected>2</option><option>3</option></select></div><div><label>Year</label><input id="set-year" value="2026" style="min-width:65px"></div></div><button class="btn bp" onclick="saveSettings()">Save</button></div><div class="card"><h3>👨‍🏫 Teachers</h3><div class="frow"><div><label>Name</label><input id="nt-name" placeholder="e.g. Koech" style="min-width:120px"></div><div><label>Code</label><input id="nt-code" placeholder="KOE" style="min-width:60px"></div><div><label>Role</label><select id="nt-role"><option value="">Teacher</option><option value="admin">Admin</option></select></div><button class="btn bp" style="margin-top:18px" onclick="addTeacher()">+ Add</button></div><table class="dt"><thead><tr><th>#</th><th>Name</th><th>Code</th><th>Role</th><th>Action</th></tr></thead><tbody id="teacher-tbody"></tbody></table></div></div><div class="card"><h3>⏰ Daily Schedule</h3><div class="info"><b>8 lesson slots per day:</b>
+ Slot 1: 8:20–9:00 &nbsp;·&nbsp; Slot 2: 9:00–9:40 &nbsp;·&nbsp;
+ <b>BREAK</b> 9:40–9:50 &nbsp;·&nbsp;
+ Slot 3: 9:50–10:30 &nbsp;·&nbsp; Slot 4: 10:30–11:10 &nbsp;·&nbsp;
+ <b>BREAK</b> 11:10–11:30 &nbsp;·&nbsp;
+ Slot 5: 11:30–12:10 &nbsp;·&nbsp; Slot 6: 12:10–12:50 &nbsp;·&nbsp;
+ <b>LUNCH</b> 12:50–2:00 &nbsp;·&nbsp;
+ Slot 7: 2:00–2:40 &nbsp;·&nbsp; Slot 8: 2:40–3:20 &nbsp;·&nbsp;
+ <b>GAMES</b> 3:20–3:30
+ </div></div></div><div id="tab-subjects" class="panel"><div class="card"><h3>📚 Subjects & Lesson Counts per Class</h3><div class="info">Doubles = consecutive 2-slot lessons. E.g. Science has 1 double + 3 singles = 5 total.</div><div class="frow"><div><label>Subject</label><input id="sj-name" placeholder="Mathematics" style="min-width:140px"></div><div><label>Code</label><input id="sj-code" placeholder="MATH" style="min-width:65px"></div><button class="btn bp" style="margin-top:18px" onclick="addSubject()">+ Add</button></div><div style="overflow-x:auto"><table class="dt" id="subj-table"><thead><tr><th>Subject</th><th>Code</th><th>GR7 Tot</th><th>GR7 Dbl</th><th>8E Tot</th><th>8E Dbl</th><th>8W Tot</th><th>8W Dbl</th><th>GR9 Tot</th><th>GR9 Dbl</th><th></th></tr></thead><tbody id="subj-tbody"></tbody></table></div></div></div><div id="tab-assign" class="panel"><div class="card"><h3>👨‍🏫 Quick Add / Manage Teachers</h3><div class="frow"><div><label>Name</label><input id="qa-name" placeholder="Teacher name" style="min-width:130px"></div><div><label>Code</label><input id="qa-code" placeholder="e.g. BMO" style="min-width:60px"></div><div><label>Role</label><select id="qa-role"><option value="">Teacher</option><option value="admin">Admin</option></select></div><button class="btn bp" style="margin-top:18px" onclick="quickAddTeacher()">+ Add Teacher</button></div><div style="overflow-x:auto;margin-top:6px"><table class="dt"><thead><tr><th>#</th><th>Name</th><th>Code</th><th>Role</th><th>Subjects Assigned</th><th>Action</th></tr></thead><tbody id="qa-teacher-tbody"></tbody></table></div></div><div class="card"><h3>📋 Subject → Class → Teacher Assignments</h3><div class="info">Click <b>✏️ Edit</b> on any cell to change or reallocate the teacher. Changes take effect immediately and are reflected in timetable generation.</div><div style="overflow-x:auto"><table class="dt" id="assign-table"><thead><tr><th>Subject</th><th>Code</th><th style="min-width:110px">GR 7</th><th style="min-width:110px">GR 8E</th><th style="min-width:110px">GR 8W</th><th style="min-width:110px">GR 9</th></tr></thead><tbody id="assign-tbody"></tbody></table></div></div></div><div class="mo" id="mo-assign"><div class="md"><h3 id="ma-title">Edit Assignment</h3><div id="ma-body"></div><div class="ma"><button class="btn bp bsm" onclick="saveAssign()">Save</button><button class="btn bsm" style="background:#eee" onclick="closeMo('mo-assign')">Cancel</button></div></div></div><div id="tab-constraints" class="panel"><div class="card"><h3>🔒 Subject Time Constraints</h3><div class="info">
+ Slot numbers: 1=8:20 · 2=9:00 · 3=9:50 · 4=10:30 · 5=11:30 · 6=12:10 · 7=2:00 · 8=2:40<br><b>Default:</b> Maths ≤ Slot 4 (before 2nd break) · English ≤ Slot 6 (before lunch)<br><b>💡 Priority tip:</b> Subjects with tighter constraints (fewer allowed slots) are automatically scheduled <b>first</b> during generation — so Maths and English will always grab their early slots before other subjects fill them.
+ </div><div id="clist"></div><button class="btn bp bsm no-print" style="margin-top:6px" onclick="addCRow()">+ Add Constraint</button></div><div class="card"><h3>📅 Day Blocks</h3><div class="info">Prevent a subject appearing on specific days.</div><div id="dclist"></div><button class="btn bp bsm no-print" style="margin-top:6px" onclick="addDCRow()">+ Add Day Block</button></div></div><div id="tab-generate" class="panel"><div class="card"><h3>⚡ Generate Timetable</h3><div id="gen-status" style="display:none"></div><div class="frow"><div><label>Random Seed</label><input id="gen-seed" type="number" value="42" style="min-width:65px"></div><div><label>Max Attempts</label><input id="gen-max" type="number" value="2000" style="min-width:75px"></div></div><div style="display:flex;gap:7px;margin-top:7px"><button class="btn bg" onclick="generateTimetable()">⚡ Generate</button><button class="btn bd" onclick="clearTimetable();renderVerify()">🗑 Clear</button></div><div id="gen-log" style="display:none;margin-top:9px;font-size:.7rem;color:#557;max-height:140px;overflow-y:auto;background:var(--gray);padding:7px;border-radius:4px"></div></div><div class="card"><h3>📊 Lesson Count Verification</h3><div id="verify-table"></div></div></div><div id="tab-view" class="panel"><div class="no-print"><div class="vsel"><button class="vb active" id="vb-GR7" onclick="setView('GR7')">Grade 7</button><button class="vb" id="vb-GR8E" onclick="setView('GR8E')">Grade 8E</button><button class="vb" id="vb-GR8W" onclick="setView('GR8W')">Grade 8W</button><button class="vb" id="vb-GR8" onclick="setView('GR8')">Grade 8 Combined</button><button class="vb" id="vb-GR9" onclick="setView('GR9')">Grade 9</button><button class="vb" id="vb-MASTER" onclick="setView('MASTER')">Master (All)</button></div><div style="display:flex;gap:6px;margin-bottom:9px;flex-wrap:wrap;align-items:center"><button class="btn bs bsm" onclick="printArea('class-print-area')">🖨 Print</button><button class="btn bp bsm" onclick="downloadPDF('class-print-area','class')">⬇ Download PDF</button><button class="btn bg bsm" onclick="exportHTML('class')">💾 Save HTML</button><span style="font-size:.68rem;color:#778;font-style:italic;align-self:center">Click any cell to edit</span></div></div><div id="class-print-area"><div id="class-hdr" style="text-align:center;margin-bottom:8px"><div id="ch-school" style="font-size:.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase">SISION JUNIOR SCHOOL — NAIVASHA</div><div id="ch-title" style="font-size:1rem;font-weight:900;letter-spacing:1px;color:var(--gold)">JUNIOR SCHOOL TIMETABLE</div><div id="ch-sub" style="font-size:.72rem;letter-spacing:.5px">GRADE: 7 &nbsp;|&nbsp; TERM: 2 &nbsp;|&nbsp; YEAR: 2026</div></div><div class="card"><div style="overflow-x:auto" id="class-display"></div></div></div></div><div id="tab-teacher" class="panel"><div class="no-print" style="margin-bottom:10px"><div class="frow" style="flex-wrap:wrap;gap:6px;align-items:flex-end"><div><label>Select Teacher</label><select id="tv-sel" onchange="renderTeacherView()" style="min-width:160px"></select></div><button class="btn bs bsm" onclick="printArea('teacher-print-area')" style="margin-top:18px">🖨 Print</button><button class="btn bp bsm" onclick="downloadPDF('teacher-print-area','teacher')" style="margin-top:18px">⬇ Download PDF</button><button class="btn bg bsm" onclick="exportHTML('teacher')" style="margin-top:18px">💾 Save HTML</button></div></div><div id="teacher-print-area"><div id="teacher-hdr" style="margin-bottom:7px"><div style="font-size:.78rem;font-weight:700;letter-spacing:2px;text-align:center" id="th-school">SISION JUNIOR SCHOOL — NAIVASHA</div><div style="font-size:.95rem;font-weight:900;letter-spacing:1px;text-align:center" id="th-title">TEACHER TIMETABLE — KOECH</div><div style="font-size:.72rem;text-align:center" id="th-sub">TERM: 2 &nbsp;|&nbsp; YEAR: 2026</div></div><div class="card"><div style="overflow-x:auto" id="teacher-display"></div></div><div id="teacher-summary" class="tsummary"></div></div></div><div id="tab-special" class="panel"><div class="card"><h3>📋 Special Timetable Designer</h3><div class="info">Create exam timetables, remedial timetables, revision schedules etc. Fully separate from the main timetable.</div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px"><button class="vb active" id="sp-exam" onclick="setSpecialMode('exam',this)">📝 Exam</button><button class="vb" id="sp-remedial" onclick="setSpecialMode('remedial',this)">🌅 Remedial</button><button class="vb" id="sp-revision" onclick="setSpecialMode('revision',this)">📖 Revision</button><button class="vb" id="sp-custom" onclick="setSpecialMode('custom',this)">✏️ Custom</button></div><div class="frow"><div><label>Title</label><input id="sp-title" value="END TERM 2 EXAMINATIONS" style="min-width:220px"></div><div><label>Subtitle / Date Range</label><input id="sp-dates" value="14th July – 18th July 2026" style="min-width:200px"></div></div><div class="frow"><div><label>Rows label</label><input id="sp-rowlabel" value="DATE / CLASS" style="min-width:130px"></div><div><label>Column header</label><input id="sp-collabel" value="SESSION" style="min-width:120px"></div></div></div><div class="card"><h3>🕐 Sessions / Columns</h3><div class="info">For exams: e.g. PP1 (8:20–10:20), PP2 (11:00–1:00). For remedial: Morning (6:00–7:30), Evening (4:00–5:30).</div><div id="sp-cols-list"></div><button class="btn bp bsm" onclick="addSpCol()" style="margin-top:6px">+ Add Session</button></div><div class="card"><h3>📅 Rows (Dates or Days)</h3><div id="sp-rows-list"></div><button class="btn bp bsm" onclick="addSpRow()" style="margin-top:6px">+ Add Row</button></div><div class="card"><h3>📋 Timetable Grid</h3><div class="no-print" style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap"><button class="btn bg bsm" onclick="buildSpecialGrid()">🔄 Build / Refresh Grid</button><button class="btn bs bsm" onclick="printArea('sp-print-area')">🖨 Print</button><button class="btn bp bsm" onclick="downloadPDF('sp-print-area','special')">⬇ Download PDF</button><button class="btn bg bsm" onclick="exportHTML('special')">💾 Save HTML</button></div><div id="sp-print-area"><div style="text-align:center;margin-bottom:8px"><div style="font-size:.78rem;font-weight:700;letter-spacing:2px" id="sp-hdr-school">SISION JUNIOR SCHOOL — NAIVASHA</div><div style="font-size:1rem;font-weight:900;letter-spacing:1px" id="sp-hdr-title">END TERM 2 EXAMINATIONS</div><div style="font-size:.72rem" id="sp-hdr-sub">14th July – 18th July 2026</div></div><div style="overflow-x:auto"><div id="sp-grid"></div></div></div></div></div><div class="mo" id="mo-edit"><div class="md"><h3 id="me-title">Edit Lesson</h3><div id="me-body"></div><div class="ma"><button class="btn bd bsm" onclick="clearCell()">Clear Cell</button><button class="btn bp bsm" onclick="saveCell()">Save</button><button class="btn bsm" style="background:#eee" onclick="closeMo('mo-edit')">Cancel</button></div></div></div><script>const CLASSES=['GR7','GR8E','GR8W','GR9'];
+const CL={GR7:'GR 7',GR8E:'GR 8E',GR8W:'GR 8W',GR9:'GR 9'};
+const DAYS=['MON','TUE','WED','THU','FRI'];
+const NS=8;
+const COLS=[
+{t:'lesson',si:0,n:'1',time:'8:20–9:00'},
+{t:'lesson',si:1,n:'2',time:'9:00–9:40'},
+{t:'period',label:'BREAK',time:'9:40–9:50'},
+{t:'lesson',si:2,n:'3',time:'9:50–10:30'},
+{t:'lesson',si:3,n:'4',time:'10:30–11:10'},
+{t:'period',label:'BREAK',time:'11:10–11:30'},
+{t:'lesson',si:4,n:'5',time:'11:30–12:10'},
+{t:'lesson',si:5,n:'6',time:'12:10–12:50'},
+{t:'period',label:'LUNCH',time:'12:50–2:00'},
+{t:'lesson',si:6,n:'7',time:'2:00–2:40'},
+{t:'lesson',si:7,n:'8',time:'2:40–3:20'},
+{t:'period',label:'GAMES',time:'3:20–3:30'},
+];
+const PERIOD_LETTERS={
+BREAK:{MON:'B',TUE:'R',WED:'E',THU:'A',FRI:'K'},
+LUNCH:{MON:'L',TUE:'U',WED:'N',THU:'C',FRI:'H'},
+GAMES:{MON:'G',TUE:'A',WED:'M',THU:'E',FRI:'S'},
+};
+const SL=['1 (8:20)','2 (9:00)','3 (9:50)','4 (10:30)','5 (11:30)','6 (12:10)','7 (2:00)','8 (2:40)'];
+let S={
+school:'SISION JUNIOR SCHOOL — NAIVASHA',term:'2',year:'2026',
+teachers:[],subjects:[],assignments:{},constraints:[],dayConstraints:[],
+timetable:{}
+};
+let editCtx={};
+let cid=0;
+function showTab(n,btn){
+document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+document.querySelectorAll('.tb').forEach(b=>b.classList.remove('active'));
+document.getElementById('tab-'+n).classList.add('active');
+if(btn)btn.classList.add('active');
+if(n==='assign')renderAssignments();
+if(n==='constraints')renderConstraints();
+if(n==='generate')renderVerify();
+if(n==='view')renderClassView();
+if(n==='teacher')renderTeacherTab();
+if(n==='special'){renderSpCols();renderSpRows();}
+}
+function saveSettings(){
+S.school=document.getElementById('set-school').value;
+S.term=document.getElementById('set-term').value;
+S.year=document.getElementById('set-year').value;
+document.getElementById('hdr-term').textContent=S.term;
+document.getElementById('hdr-year').textContent=S.year;
+alert('Saved!');
+}
+function addTeacher(){
+const name=document.getElementById('nt-name').value.trim();
+const code=document.getElementById('nt-code').value.trim().toUpperCase();
+const role=document.getElementById('nt-role').value;
+if(!name||!code)return alert('Enter name and code');
+if(S.teachers.find(t=>t.code===code))return alert('Code used');
+S.teachers.push({name,code,role});
+document.getElementById('nt-name').value='';
+document.getElementById('nt-code').value='';
+renderTeachers();
+}
+function renderTeachers(){
+const tb=document.getElementById('teacher-tbody');
+if(!S.teachers.length){tb.innerHTML='<tr><td colspan="5" class="empty">No teachers</td></tr>';return;}
+tb.innerHTML=S.teachers.map((t,i)=>`<tr><td>${i+1}</td><td><b>${t.name}</b></td><td><span class="badge bn">${t.code}</span></td><td>${t.role==='admin'?'<span class="badge" style="background:var(--gold);color:white">Admin</span>':''}</td><td><button class="btn bo bsm" onclick="editTeacher(${i})">✏️ Edit</button><button class="btn bd bsm" onclick="removeTeacher(${i})">✕</button></td></tr>`).join('');
+}
+function editTeacher(i){
+const t=S.teachers[i];
+const name=prompt('Name:',t.name);if(name===null)return;
+const code=prompt('Code:',t.code);if(code===null)return;
+const uc=code.toUpperCase();
+if(uc!==t.code){
+Object.keys(S.assignments).forEach(sk=>Object.keys(S.assignments[sk]).forEach(cls=>{
+if(S.assignments[sk][cls]===t.code)S.assignments[sk][cls]=uc;
+}));
+}
+S.teachers[i]={...t,name,code:uc};
+renderTeachers();
+}
+function removeTeacher(i){if(!confirm('Remove?'))return;S.teachers.splice(i,1);renderTeachers();}
+function getTName(code){const t=S.teachers.find(t=>t.code===code);return t?t.name:'';}
+function addSubject(){
+const name=document.getElementById('sj-name').value.trim();
+const code=document.getElementById('sj-code').value.trim().toUpperCase();
+if(!name||!code)return alert('Enter name and code');
+if(S.subjects.find(s=>s.code===code))return alert('Code exists');
+S.subjects.push({name,code,
+lessons:{GR7:{total:4,doubles:0},GR8E:{total:4,doubles:0},GR8W:{total:4,doubles:0},GR9:{total:4,doubles:0}}});
+document.getElementById('sj-name').value='';
+document.getElementById('sj-code').value='';
+renderSubjects();
+}
+function renderSubjects(){
+const tb=document.getElementById('subj-tbody');
+if(!S.subjects.length){tb.innerHTML='<tr><td colspan="11" class="empty">No subjects</td></tr>';return;}
+tb.innerHTML=S.subjects.map((s,i)=>`<tr><td><b>${s.name}</b></td><td><span class="badge bn">${s.code}</span></td>
+${CLASSES.map(cls=>`
+<td><input type="number" min="0" max="10" value="${s.lessons[cls].total}" style="width:42px" onchange="S.subjects[${i}].lessons['${cls}'].total=+this.value"></td><td><input type="number" min="0" max="4" value="${s.lessons[cls].doubles}" style="width:36px" onchange="S.subjects[${i}].lessons['${cls}'].doubles=+this.value"></td>
+`).join('')}
+<td><button class="btn bd bsm" onclick="S.subjects.splice(${i},1);renderSubjects()">✕</button></td></tr>`).join('');
+}
+function quickAddTeacher(){
+const name=document.getElementById('qa-name').value.trim();
+const code=document.getElementById('qa-code').value.trim().toUpperCase();
+const role=document.getElementById('qa-role').value;
+if(!name||!code)return alert('Enter name and code');
+if(S.teachers.find(t=>t.code===code))return alert('Code already used');
+S.teachers.push({name,code,role});
+document.getElementById('qa-name').value='';
+document.getElementById('qa-code').value='';
+renderTeachers();
+renderAssignments();
+}
+let assignCtx={};
+function renderAssignments(){
+const qtb=document.getElementById('qa-teacher-tbody');
+if(!S.teachers.length){qtb.innerHTML='<tr><td colspan="6" class="empty">No teachers yet</td></tr>';}
+else{
+qtb.innerHTML=S.teachers.map((t,i)=>{
+let assigned=[];
+S.subjects.forEach(s=>{
+CLASSES.forEach(cls=>{
+if(S.assignments[s.code]?.[cls]===t.code) assigned.push(`${s.code}/${CL[cls]}`);
+});
+});
+return `<tr><td>${i+1}</td><td><b>${t.name}</b></td><td><span class="badge bn">${t.code}</span></td><td>${t.role==='admin'?'<span class="badge" style="background:var(--gold);color:white">Admin</span>':''}</td><td style="font-size:.68rem;color:#557">${assigned.length?assigned.join(', '):'<i>none</i>'}</td><td><button class="btn bo bsm" onclick="editTeacher(${i})">✏️ Edit</button><button class="btn bd bsm" onclick="removeTeacherFromAssign(${i})">🗑 Remove</button></td></tr>`;
+}).join('');
+}
+const tb=document.getElementById('assign-tbody');
+if(!S.subjects.length){tb.innerHTML='<tr><td colspan="6" class="empty">No subjects added yet</td></tr>';return;}
+if(!S.teachers.length){tb.innerHTML='<tr><td colspan="6" class="empty">No teachers added yet</td></tr>';return;}
+tb.innerHTML=S.subjects.map((s,si)=>{
+if(!S.assignments[s.code])S.assignments[s.code]={};
+let row=`<tr><td><b>${s.name}</b></td><td><span class="badge bn">${s.code}</span></td>`;
+CLASSES.forEach(cls=>{
+const tc=S.assignments[s.code][cls]||'';
+const tname=tc?getTName(tc):'<span style="color:#aaa;font-style:italic">unassigned</span>';
+row+=`<td style="padding:4px 6px"><div style="display:flex;align-items:center;justify-content:space-between;gap:4px"><span style="font-size:.72rem">${tname}</span><button class="btn bo bsm" onclick="openAssignEdit('${s.code}','${s.name}','${cls}')">✏️</button></div></td>`;
+});
+row+=`</tr>`;
+return row;
+}).join('');
+}
+function openAssignEdit(subjCode,subjName,cls){
+assignCtx={subjCode,cls};
+const cur=S.assignments[subjCode]?.[cls]||'';
+document.getElementById('ma-title').textContent=`Reassign: ${subjName} → ${CL[cls]}`;
+document.getElementById('ma-body').innerHTML=`
+<div class="info" style="margin-bottom:10px">
+Current teacher: <b>${cur?getTName(cur):'<i>unassigned</i>'}</b></div><div><label>Assign to</label><select id="ma-teacher" style="width:100%;margin-top:4px"><option value="">— unassigned —</option>
+${S.teachers.map(t=>`<option value="${t.code}" ${t.code===cur?'selected':''}>${t.name} (${t.code})</option>`).join('')}
+</select></div><div style="margin-top:10px;font-size:.72rem;color:#557"><b>Note:</b> If you change a teacher here, regenerate the timetable for changes to apply to new slots. Existing manually-placed slots are not affected.
+</div>`;
+document.getElementById('mo-assign').classList.add('open');
+}
+function saveAssign(){
+const{subjCode,cls}=assignCtx;
+const tc=document.getElementById('ma-teacher').value;
+if(!S.assignments[subjCode])S.assignments[subjCode]={};
+S.assignments[subjCode][cls]=tc;
+closeMo('mo-assign');
+renderAssignments();
+}
+function removeTeacherFromAssign(i){
+const t=S.teachers[i];
+if(!confirm(`Remove ${t.name}? Their assignments will be cleared.`))return;
+Object.keys(S.assignments).forEach(sk=>{
+Object.keys(S.assignments[sk]).forEach(cls=>{
+if(S.assignments[sk][cls]===t.code)S.assignments[sk][cls]='';
+});
+});
+S.teachers.splice(i,1);
+renderTeachers();
+renderAssignments();
+}
+function setAssign(subj,cls,tc){
+if(!S.assignments[subj])S.assignments[subj]={};
+S.assignments[subj][cls]=tc;
+}
+function addCRow(subj='',cls='ALL',maxSlot=7,minSlot=0){
+const id='cr-'+(cid++);
+const el=document.getElementById('clist');
+const d=document.createElement('div');d.className='crow';d.id=id;
+d.innerHTML=`
+<div><label>Subject</label><select class="cr-s">${S.subjects.map(s=>`<option value="${s.code}" ${s.code===subj?'selected':''}>${s.name}</option>`).join('')}</select></div><div><label>Class</label><select class="cr-c"><option value="ALL" ${cls==='ALL'?'selected':''}>All</option>
+${CLASSES.map(c=>`<option value="${c}" ${c===cls?'selected':''}>${CL[c]}</option>`).join('')}</select></div><div><label>Not after slot</label><select class="cr-mx">${SL.map((l,n)=>`<option value="${n}" ${n===maxSlot?'selected':''}>Slot ${l}</option>`).join('')}</select></div><div><label>Not before slot</label><select class="cr-mn">${SL.map((l,n)=>`<option value="${n}" ${n===minSlot?'selected':''}>Slot ${l}</option>`).join('')}</select></div><button class="btn bd bsm" onclick="document.getElementById('${id}').remove()" style="margin-top:18px">✕</button>`;
+el.appendChild(d);
+}
+function addDCRow(){
+const id='dc-'+(cid++);
+const el=document.getElementById('dclist');
+const d=document.createElement('div');d.className='crow';d.id=id;
+d.innerHTML=`
+<div><label>Subject</label><select class="dc-s">${S.subjects.map(s=>`<option value="${s.code}">${s.name}</option>`).join('')}</select></div><div><label>Block days</label><div>
+${DAYS.map(dy=>`<label style="font-weight:400;margin:0 3px;font-size:.72rem"><input type="checkbox" class="dc-d" value="${dy}"> ${dy}</label>`).join('')}
+</div></div><button class="btn bd bsm" onclick="document.getElementById('${id}').remove()" style="margin-top:18px">✕</button>`;
+el.appendChild(d);
+}
+function renderConstraints(){
+document.getElementById('clist').innerHTML='';
+document.getElementById('dclist').innerHTML='';
+S.constraints.forEach(c=>addCRow(c.subj,c.cls,c.maxSlot,c.minSlot));
+}
+function collectConstraints(){
+S.constraints=[];
+document.querySelectorAll('.crow').forEach(r=>{
+const subj=r.querySelector('.cr-s')?.value;if(!subj)return;
+S.constraints.push({subj,cls:r.querySelector('.cr-c').value,
+maxSlot:+r.querySelector('.cr-mx').value,minSlot:+r.querySelector('.cr-mn').value});
+});
+S.dayConstraints=[];
+document.querySelectorAll('[id^="dc-"]').forEach(r=>{
+const subj=r.querySelector('.dc-s')?.value;
+const days=[...r.querySelectorAll('.dc-d:checked')].map(c=>c.value);
+if(subj&&days.length)S.dayConstraints.push({subj,days});
+});
+}
+function getConstraint(subj,cls){
+let max=7,min=0;
+S.constraints.forEach(c=>{
+if(c.subj!==subj)return;
+if(c.cls!=='ALL'&&c.cls!==cls)return;
+if(c.maxSlot<max)max=c.maxSlot;
+if(c.minSlot>min)min=c.minSlot;
+});
+return{max,min};
+}
+function isDayBlocked(subj,day){return S.dayConstraints.some(c=>c.subj===subj&&c.days.includes(day));}
+function clearTimetable(){
+S.timetable={};
+CLASSES.forEach(cls=>{S.timetable[cls]={};DAYS.forEach(d=>{S.timetable[cls][d]=Array(NS).fill(null);});});
+}
+const DOUBLE_PAIRS=[[0,1],[2,3],[4,5],[6,7]];
+function generateTimetable(){
+collectConstraints();
+const seedInput=document.getElementById('gen-seed');
+let rng=+(seedInput.value)||Date.now();
+rng=(rng^Date.now())>>>0;
+seedInput.value=rng;
+const maxA=+(document.getElementById('gen-max').value)||3000;
+function rand(){rng=(Math.imul(rng,1664525)+1013904223)>>>0;return rng/4294967296;}
+function shuffle(a){const b=[...a];for(let i=b.length-1;i>0;i--){const j=0|rand()*(i+1);[b[i],b[j]]=[b[j],b[i]];}return b;}
+const log=[];let placed=false;
+const startSeed=rng;
+for(let att=1;att<=maxA;att++){
+clearTimetable();
+const busy={};
+S.teachers.forEach(t=>{busy[t.code]={};DAYS.forEach(d=>busy[t.code][d]=new Set());});
+let failed=false;
+const allItems=[];
+CLASSES.forEach(cls=>{
+S.subjects.forEach(s=>{
+const lc=s.lessons[cls];
+const teacher=S.assignments[s.code]?.[cls]||'';
+const dbl=lc.doubles||0;
+const singles=(lc.total||0)-dbl*2;
+if(singles<0)return;
+const{max,min}=getConstraint(s.code,cls);
+const availableSlots=Math.min(max,NS-1)-min+1;
+for(let i=0;i<dbl;i++)
+allItems.push({subj:s.code,name:s.name,cls,teacher,isDouble:true,availableSlots});
+for(let i=0;i<singles;i++)
+allItems.push({subj:s.code,name:s.name,cls,teacher,isDouble:false,availableSlots});
+});
+});
+const doubles=shuffle(allItems.filter(x=>x.isDouble));
+const singles=shuffle(allItems.filter(x=>!x.isDouble))
+.sort((a,b)=>a.availableSlots-b.availableSlots);
+const queue=[...doubles,...singles];
+for(const item of queue){
+if(failed)break;
+const{max,min}=getConstraint(item.subj,item.cls);
+const cands=[];
+const dayOrder=shuffle([...DAYS]);
+for(const day of dayOrder){
+if(isDayBlocked(item.subj,day))continue;
+if(item.isDouble){
+for(const [s1,s2] of DOUBLE_PAIRS){
+if(s1<min||s2>max)continue;
+if(S.timetable[item.cls][day][s1]!==null)continue;
+if(S.timetable[item.cls][day][s2]!==null)continue;
+if(item.teacher&&(busy[item.teacher][day].has(s1)||busy[item.teacher][day].has(s2)))continue;
+cands.push({day,si:s1,si2:s2,dbl:true});
+}
+}else{
+for(let si=min;si<=Math.min(max,NS-1);si++){
+if(S.timetable[item.cls][day][si]!==null)continue;
+if(item.teacher&&busy[item.teacher][day].has(si))continue;
+cands.push({day,si,dbl:false});
+}
+}
+}
+if(!cands.length){
+failed=true;
+log.push(`Att ${att}: Can't place ${item.name}/${CL[item.cls]}${item.isDouble?' (double)':''}`);
+break;
+}
+const pick=cands[0|rand()*cands.length];
+const lesson={subj:item.subj,name:item.name,teacher:item.teacher};
+if(pick.dbl){
+S.timetable[item.cls][pick.day][pick.si]={...lesson,dblL:true};
+S.timetable[item.cls][pick.day][pick.si2]={...lesson,dblR:true};
+if(item.teacher){
+busy[item.teacher][pick.day].add(pick.si);
+busy[item.teacher][pick.day].add(pick.si2);
+}
+}else{
+S.timetable[item.cls][pick.day][pick.si]=lesson;
+if(item.teacher)busy[item.teacher][pick.day].add(pick.si);
+}
+}
+if(!failed){placed=true;log.unshift(`✅ Done in ${att} attempt(s)`);break;}
+rng=(rng^(att*2654435761+0x9e3779b9))>>>0;
+}
+const st=document.getElementById('gen-status');
+st.style.display='block';
+st.className='alert '+(placed?'as':'ae');
+st.textContent=placed
+?`✅ Timetable generated successfully!`
+:`⚠️ Could not fully place all lessons after ${maxA} attempts. Check assignments tab — some subjects may have no teacher assigned, or constraints are too tight.`;
+document.getElementById('gen-log').style.display='block';
+document.getElementById('gen-log').innerHTML=log.slice(0,80).map(l=>`<div>${l}</div>`).join('');
+renderVerify();
+if(placed){
+document.querySelectorAll('.tb').forEach(b=>b.classList.remove('active'));
+document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+document.getElementById('tab-view').classList.add('active');
+document.querySelector('.tb[onclick*="view"]').classList.add('active');
+renderClassView();
+}
+}
+function renderVerify(){
+const el=document.getElementById('verify-table');
+if(!S.subjects.length){el.innerHTML='<div class="empty">No subjects</div>';return;}
+let h=`<div style="margin-bottom:10px"><div style="font-size:.78rem;font-weight:700;color:var(--navy);margin-bottom:5px">🔍 Collision Check</div>
+${renderCollisionReport()}
+</div>`;
+h+=`<table class="dt"><thead><tr><th>Subject</th>${CLASSES.map(c=>`<th>${CL[c]}</th>`).join('')}</tr></thead><tbody>`;
+S.subjects.forEach(s=>{
+h+=`<tr><td><b>${s.name}</b></td>`;
+CLASSES.forEach(cls=>{
+const target=s.lessons[cls].total||0;
+let placed=0;
+DAYS.forEach(d=>S.timetable[cls]?.[d]?.forEach(sl=>{if(sl&&sl.subj===s.code)placed++;}));
+h+=`<td><span class="badge ${placed===target?'bg2':'br'}">${placed}/${target}</span></td>`;
+});
+h+=`</tr>`;
+});
+el.innerHTML=h+'</tbody></table>';
+}
+let curView='GR7';
+function setView(v){
+curView=v;
+document.querySelectorAll('.vb').forEach(b=>b.classList.remove('active'));
+const vb=document.getElementById('vb-'+v);if(vb)vb.classList.add('active');
+renderClassView();
+}
+function renderClassView(){
+const el=document.getElementById('class-display');
+const ph=document.getElementById('ch-sub');
+if(curView==='MASTER'){
+el.innerHTML=buildMaster();
+document.getElementById('ch-title').textContent='MASTER TIMETABLE';
+ph.textContent=`ALL CLASSES | TERM: ${S.term} | YEAR: ${S.year}`;
+}else if(curView==='GR8'){
+el.innerHTML=buildCombined(['GR8E','GR8W']);
+document.getElementById('ch-title').textContent='JUNIOR SCHOOL TIMETABLE';
+ph.textContent=`GRADE: 8 COMBINED | TERM: ${S.term} | YEAR: ${S.year}`;
+}else{
+el.innerHTML=buildSingle(curView);
+document.getElementById('ch-title').textContent='JUNIOR SCHOOL TIMETABLE';
+ph.textContent=`GRADE: ${CL[curView]} | TERM: ${S.term} | YEAR: ${S.year}`;
+}
+document.getElementById('ch-school').textContent=S.school;
+}
+function classHeader(showClassCol){
+let r1=`<tr>`;
+let r2=`<tr>`;
+r1+=`<th class="ch" style="width:34px">DAY</th>`;
+r2+=`<th class="ch2"></th>`;
+if(showClassCol){r1+=`<th class="ch" style="width:42px">CLASS</th>`;r2+=`<th class="ch2"></th>`;}
+COLS.forEach(c=>{
+if(c.t==='period'){
+r1+=`<th class="ch" style="width:28px;font-size:.6rem">${c.label.substring(0,3)}</th>`;
+r2+=`<th class="ch2" style="font-size:.57rem">${c.time}</th>`;
+}else{
+r1+=`<th class="ch">${c.n}</th>`;
+r2+=`<th class="ch2">${c.time}</th>`;
+}
+});
+return `<thead>${r1}</tr>${r2}</tr></thead>`;
+}
+function buildSingle(cls){
+let rows='';
+const span=DAYS.length;
+DAYS.forEach((day,di)=>{
+rows+=`<tr><td class="dy">${day}</td>`;
+COLS.forEach(c=>{
+if(c.t==='period'){
+const letter=PERIOD_LETTERS[c.label][day];
+rows+=`<td class="pc">${letter}</td>`;
+}else{
+const slot=S.timetable[cls]?.[day]?.[c.si];
+const hasCollision=slot?.teacher&&CLASSES.some(oc=>oc!==cls&&S.timetable[oc]?.[day]?.[c.si]?.teacher===slot.teacher);
+const ex=slot?(slot.dblL?'dbl-l':slot.dblR?'dbl-r':''):'empty-lc';
+const collStyle=hasCollision?'outline:2px solid var(--red);outline-offset:-2px;':'';
+rows+=`<td class="lc ${ex}" style="${collStyle}" onclick="openEdit('${cls}','${day}',${c.si})" title="${hasCollision?'⚠️ Teacher collision!':''}">`;
+if(slot)rows+=`<span class="ls">${slot.subj}${hasCollision?' ⚠️':''}</span><span class="lt">${getTName(slot.teacher)}</span>`;
+rows+=`</td>`;
+}
+});
+rows+=`</tr>`;
+});
+return `<table class="ctt">${classHeader(false)}<tbody>${rows}</tbody></table>`;
+}
+function buildMultiClass(classes){
+let rows='';
+const clsSpan=classes.length;
+DAYS.forEach((day,di)=>{
+classes.forEach((cls,ci)=>{
+rows+=`<tr>`;
+if(ci===0)rows+=`<td class="dy" rowspan="${clsSpan}" style="border-right:2px solid var(--navy)">${day}</td>`;
+rows+=`<td class="cl">${CL[cls]}</td>`;
+COLS.forEach(c=>{
+if(c.t==='period'){
+if(ci===0){
+const letter=PERIOD_LETTERS[c.label][day];
+rows+=`<td class="pc" rowspan="${clsSpan}" style="font-size:1.1rem">${letter}</td>`;
+}
+}else{
+const slot=S.timetable[cls]?.[day]?.[c.si];
+const hasCollision=slot?.teacher&&CLASSES.some(oc=>oc!==cls&&S.timetable[oc]?.[day]?.[c.si]?.teacher===slot.teacher);
+const ex=slot?(slot.dblL?'dbl-l':slot.dblR?'dbl-r':''):'empty-lc';
+const collStyle=hasCollision?'outline:2px solid var(--red);outline-offset:-2px;':'';
+rows+=`<td class="lc ${ex}" style="${collStyle}" onclick="openEdit('${cls}','${day}',${c.si})" title="${hasCollision?'⚠️ Teacher collision!':''}">`;
+if(slot){
+rows+=`<span class="ls">${slot.subj}${hasCollision?' ⚠️':''}</span><span class="lt">${getTName(slot.teacher)}</span>`;
+}
+rows+=`</td>`;
+}
+});
+rows+=`</tr>`;
+});
+rows+=`<tr><td colspan="100" style="padding:0;height:3px;background:var(--navy);border:none"></td></tr>`;
+});
+return `<table class="ctt">${classHeader(true)}<tbody>${rows}</tbody></table>`;
+}
+function buildCombined(classes){return buildMultiClass(classes);}
+function buildMaster(){return buildMultiClass(CLASSES);}
+function renderTeacherTab(){
+const sel=document.getElementById('tv-sel');
+sel.innerHTML=S.teachers.map(t=>`<option value="${t.code}">${t.name}</option>`).join('');
+renderTeacherView();
+}
+function renderTeacherView(){
+const code=document.getElementById('tv-sel').value;
+const t=S.teachers.find(t=>t.code===code);
+if(!t){document.getElementById('teacher-display').innerHTML='<div class="empty">Select a teacher</div>';return;}
+document.getElementById('th-title').textContent=`TEACHER TIMETABLE — ${t.name.toUpperCase()}`;
+document.getElementById('th-sub').textContent=`TERM: ${S.term} | YEAR: ${S.year}`;
+document.getElementById('th-school').textContent=S.school;
+let totalLessons=0;const subjC={};const clsC={};
+let h=`<table class="ttt"><thead><tr><th class="th" style="width:34px">DAY</th>`;
+COLS.forEach(c=>{
+if(c.t==='period')h+=`<th class="th" style="width:26px;font-size:.6rem">${c.label.substring(0,3)}</th>`;
+else h+=`<th class="th">${c.n}</th>`;
+});
+h+=`</tr><tr><th class="th2"></th>`;
+COLS.forEach(c=>{h+=`<th class="th2" style="font-size:.58rem">${c.time}</th>`;});
+h+=`</tr></thead><tbody>`;
+DAYS.forEach(day=>{
+h+=`<tr><td class="dy">${day}</td>`;
+COLS.forEach(c=>{
+if(c.t==='period'){
+const letter=PERIOD_LETTERS[c.label][day];
+h+=`<td class="pc" style="font-weight:900;font-size:1rem">${letter}</td>`;
+}else{
+let found=[];
+CLASSES.forEach(cls=>{
+const sl=S.timetable[cls]?.[day]?.[c.si];
+if(sl&&sl.teacher===code)found.push({...sl,cls});
+});
+if(found.length){
+found.forEach(f=>{totalLessons++;subjC[f.subj]=(subjC[f.subj]||0)+1;clsC[f.cls]=(clsC[f.cls]||0)+1;});
+h+=`<td class="lc" style="background:#fff">`;
+found.forEach(f=>{h+=`<span class="ls">${f.subj}</span><span class="lt">${CL[f.cls]}</span>`;});
+h+=`</td>`;
+}else{
+h+=`<td class="lc" style="background:#fff"></td>`;
+}
+}
+});
+h+=`</tr>`;
+});
+h+=`</tbody></table>`;
+document.getElementById('teacher-display').innerHTML=h;
+const subjList=Object.entries(subjC).map(([k,v])=>`${S.subjects.find(s=>s.code===k)?.name||k}(${v})`).join(', ');
+const clsList=Object.entries(clsC).map(([k,v])=>`${CL[k]}(${v})`).join(', ');
+document.getElementById('teacher-summary').innerHTML=`
+<b>Total Lessons Per Week: ${totalLessons}</b><br>
+Subjects: ${subjList||'none'}<br>
+Classes: ${clsList||'none'}`;
+}
+function getCollisions(){
+const found=[];
+DAYS.forEach(day=>{
+for(let si=0;si<NS;si++){
+const teacherClasses={};
+CLASSES.forEach(cls=>{
+const sl=S.timetable[cls]?.[day]?.[si];
+if(sl&&sl.teacher){
+if(!teacherClasses[sl.teacher])teacherClasses[sl.teacher]=[];
+teacherClasses[sl.teacher].push({cls,subj:sl.subj});
+}
+});
+Object.entries(teacherClasses).forEach(([tc,entries])=>{
+if(entries.length>1) found.push({teacher:tc,tname:getTName(tc),day,si,entries});
+});
+}
+});
+return found;
+}
+function renderCollisionReport(){
+const cols=getCollisions();
+if(!cols.length) return '<span style="color:var(--green);font-weight:700">✅ No collisions detected</span>';
+return cols.map(c=>
+`<div style="background:#fde8e8;border-left:3px solid var(--red);padding:5px 8px;margin-bottom:4px;border-radius:3px;font-size:.73rem">
+⚠️ <b>${c.tname}</b> — ${c.day} Slot ${c.si+1}:
+teaching ${c.entries.map(e=>`${e.subj} in ${CL[e.cls]}`).join(' AND ')}
+</div>`
+).join('');
+}
+function openEdit(cls,day,si){
+editCtx={cls,day,si};
+const slot=S.timetable[cls]?.[day]?.[si];
+document.getElementById('me-title').textContent=`${CL[cls]} — ${day}, Slot ${si+1}`;
+const teacherOpts=S.teachers.map(t=>{
+const conflict=CLASSES.filter(c=>c!==cls&&S.timetable[c]?.[day]?.[si]?.teacher===t.code);
+const warn=conflict.length?` ⚠️ busy in ${conflict.map(c=>CL[c]).join(',')}`:' ✅ free';
+return `<option value="${t.code}" ${slot&&slot.teacher===t.code?'selected':''}>${t.name}${warn}</option>`;
+}).join('');
+let h=`
+<div style="margin-bottom:7px"><label>Subject</label><select id="ed-s" style="width:100%;margin-top:3px"><option value="">— empty —</option>
+${S.subjects.map(s=>`<option value="${s.code}" ${slot&&slot.subj===s.code?'selected':''}>${s.name}</option>`).join('')}
+</select></div><div style="margin-bottom:7px"><label>Teacher <span style="font-weight:400;font-size:.68rem;color:#778">(✅ free at this slot · ⚠️ already teaching elsewhere)</span></label><select id="ed-t" style="width:100%;margin-top:3px" onchange="previewCollision(this.value,'${cls}','${day}',${si})"><option value="">— unassigned —</option>
+${teacherOpts}
+</select></div><div id="collision-preview" style="margin-top:6px"></div>`;
+if(slot) h+=`<div class="info" style="margin-top:7px">Current: <b>${slot.subj}</b> — ${getTName(slot.teacher)}</div>`;
+document.getElementById('me-body').innerHTML=h;
+document.getElementById('mo-edit').classList.add('open');
+if(slot&&slot.teacher) previewCollision(slot.teacher,cls,day,si);
+}
+function previewCollision(teacherCode,cls,day,si){
+const el=document.getElementById('collision-preview');
+if(!el||!teacherCode)return;
+const conflict=CLASSES.filter(c=>c!==cls&&S.timetable[c]?.[day]?.[si]?.teacher===teacherCode);
+if(conflict.length){
+const sl=S.timetable[conflict[0]][day][si];
+el.innerHTML=`<div style="background:#fde8e8;border-left:3px solid var(--red);padding:5px 8px;border-radius:3px;font-size:.72rem">
+⚠️ <b>Collision!</b> ${getTName(teacherCode)} is already teaching
+<b>${sl?.subj||''}</b> in ${conflict.map(c=>CL[c]).join(', ')} at this slot.
+<br>You can still save but this creates a conflict.
+</div>`;
+} else {
+el.innerHTML=`<div style="color:var(--green);font-size:.72rem;font-weight:600">✅ ${getTName(teacherCode)} is free at this slot</div>`;
+}
+}
+function saveCell(){
+const{cls,day,si}=editCtx;
+const subj=document.getElementById('ed-s').value;
+const teacher=document.getElementById('ed-t').value;
+if(teacher){
+const conflict=CLASSES.filter(c=>c!==cls&&S.timetable[c]?.[day]?.[si]?.teacher===teacher);
+if(conflict.length){
+const sl=S.timetable[conflict[0]][day][si];
+const ok=confirm(`⚠️ COLLISION: ${getTName(teacher)} is already teaching ${sl?.subj||''} in ${conflict.map(c=>CL[c]).join(', ')} at this same slot.\n\nSave anyway? (not recommended)`);
+if(!ok)return;
+}
+}
+if(!S.timetable[cls])S.timetable[cls]={};
+if(!S.timetable[cls][day])S.timetable[cls][day]=Array(NS).fill(null);
+S.timetable[cls][day][si]=subj?{subj,name:S.subjects.find(s=>s.code===subj)?.name||subj,teacher}:null;
+closeMo('mo-edit');
+renderClassView();
+}
+function clearCell(){
+const{cls,day,si}=editCtx;
+if(S.timetable[cls]?.[day])S.timetable[cls][day][si]=null;
+closeMo('mo-edit');renderClassView();
+}
+function closeMo(id){document.getElementById(id).classList.remove('open');}
+function printArea(areaId){
+const area=document.getElementById(areaId);
+const styles=document.querySelector('style').innerHTML;
+const win=window.open('','_blank');
+win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><style>${styles}*{box-sizing:border-box;}body{margin:0;padding:10px;background:white;font-family:'Segoe UI',Arial,sans-serif;}.no-print,.tabs,.hdr,button{display:none!important;}@page{size:A4 landscape;margin:10mm;}@media print{body{padding:0;}table{width:100%!important;font-size:8pt!important;}.ctt,.ttt{font-size:7.5pt!important;}.ctt th,.ctt td,.ttt th,.ttt td{padding:2px!important;}}</style></head><body>${area.innerHTML}</body></html>`);
+win.document.close();
+win.focus();
+setTimeout(()=>{win.print();win.close();},400);
+}
+function downloadPDF(areaId,type){
+const area=document.getElementById(areaId);
+const styles=document.querySelector('style').innerHTML;
+const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"><style>${styles}*{box-sizing:border-box;}body{margin:0;padding:8mm;background:white;font-family:'Segoe UI',Arial,sans-serif;}.no-print,.tabs,.hdr,button{display:none!important;}table{width:100%!important;border-collapse:collapse;}.ctt,.ttt,.sp-tbl{font-size:7.5pt!important;}.ctt th,.ctt td,.ttt th,.ttt td,.sp-tbl th,.sp-tbl td{padding:2px 3px!important;}.lc{min-width:50px!important;}.ls{font-size:7pt!important;}.lt{font-size:6pt!important;}.pc{width:18px!important;font-size:9pt!important;}.dy{width:28px!important;}</style></head><body>${area.innerHTML}</body></html>`;
+const blob=new Blob([html],{type:'text/html'});
+const a=document.createElement('a');
+a.href=URL.createObjectURL(blob);
+const fname={class:'class_timetable',teacher:'teacher_timetable',special:'special_timetable'}[type]||type;
+a.download=`sision_${fname}_T${S.term}_${S.year}.html`;
+a.click();
+setTimeout(()=>alert('File downloaded! Open it in Chrome → press Ctrl+P → set Paper=A4 Landscape → Margins=None → Save as PDF'),300);
+}
+function exportHTML(type){
+const areaMap={class:'class-print-area',teacher:'teacher-print-area',special:'sp-print-area'};
+const area=document.getElementById(areaMap[type]||'class-print-area');
+const styles=document.querySelector('style').innerHTML;
+const blob=new Blob([`<!DOCTYPE html><html><head><meta charset="UTF-8"><style>${styles}.no-print{display:none}.tabs,.hdr{display:none}</style></head><body style="padding:16px;background:white">${area.innerHTML}</body></html>`],{type:'text/html'});
+const a=document.createElement('a');a.href=URL.createObjectURL(blob);
+a.download=`sision_${type}_T${S.term}_${S.year}.html`;a.click();
+}
+let SP={
+mode:'exam',
+cols:[],
+rows:[],
+grid:{},
+};
+let spCid=0;
+const SP_TEMPLATES={
+exam:{
+title:'END TERM 2 EXAMINATIONS',
+dates:'14th July – 18th July 2026',
+cols:[
+{label:'PP1',time:'8:20 – 10:20'},
+{label:'PP2',time:'11:00 – 1:00'},
+],
+rows:[
+{label:'MON 14th July'},
+{label:'TUE 15th July'},
+{label:'WED 16th July'},
+{label:'THU 17th July'},
+{label:'FRI 18th July'},
+],
+rowLabel:'DATE / CLASS',colLabel:'PAPER'
+},
+remedial:{
+title:'REMEDIAL CLASSES TIMETABLE',
+dates:'Term 2, 2026',
+cols:[
+{label:'MORNING',time:'6:00 – 7:30'},
+{label:'EVENING',time:'4:00 – 5:30'},
+],
+rows:DAYS.map(d=>({label:d})),
+rowLabel:'DAY',colLabel:'SESSION'
+},
+revision:{
+title:'REVISION TIMETABLE',
+dates:'Term 2, 2026',
+cols:[
+{label:'Session 1',time:'8:20 – 10:10'},
+{label:'Session 2',time:'10:30 – 12:20'},
+{label:'Session 3',time:'2:00 – 3:20'},
+],
+rows:DAYS.map(d=>({label:d})),
+rowLabel:'DAY',colLabel:'SESSION'
+},
+custom:{
+title:'CUSTOM TIMETABLE',
+dates:'',
+cols:[{label:'Session 1',time:''}],
+rows:[{label:'Row 1'}],
+rowLabel:'DATE/DAY',colLabel:'SESSION'
+}
+};
+function setSpecialMode(mode,btn){
+SP.mode=mode;
+document.querySelectorAll('[id^="sp-"]').forEach(b=>{if(b.classList.contains('vb'))b.classList.remove('active');});
+if(btn)btn.classList.add('active');
+const t=SP_TEMPLATES[mode];
+document.getElementById('sp-title').value=t.title;
+document.getElementById('sp-dates').value=t.dates;
+document.getElementById('sp-rowlabel').value=t.rowLabel;
+document.getElementById('sp-collabel').value=t.colLabel;
+SP.cols=[...t.cols];
+SP.rows=[...t.rows];
+SP.grid={};
+renderSpCols();renderSpRows();
+document.getElementById('sp-grid').innerHTML='';
+}
+function renderSpCols(){
+const el=document.getElementById('sp-cols-list');
+el.innerHTML='';
+SP.cols.forEach((c,i)=>{
+const d=document.createElement('div');
+d.className='crow';
+d.innerHTML=`
+<div><label>Label</label><input value="${c.label}" style="min-width:110px" onchange="SP.cols[${i}].label=this.value"></div><div><label>Time</label><input value="${c.time}" style="min-width:130px" placeholder="e.g. 8:20–10:20" onchange="SP.cols[${i}].time=this.value"></div><button class="btn bd bsm" onclick="SP.cols.splice(${i},1);renderSpCols()" style="margin-top:18px">✕</button>`;
+el.appendChild(d);
+});
+}
+function addSpCol(){SP.cols.push({label:'Session',time:''});renderSpCols();}
+function renderSpRows(){
+const el=document.getElementById('sp-rows-list');
+el.innerHTML='';
+SP.rows.forEach((r,i)=>{
+const d=document.createElement('div');
+d.className='crow';
+d.innerHTML=`
+<div><label>Row Label</label><input value="${r.label}" style="min-width:200px" onchange="SP.rows[${i}].label=this.value"></div><button class="btn bd bsm" onclick="SP.rows.splice(${i},1);renderSpRows()" style="margin-top:18px">✕</button>`;
+el.appendChild(d);
+});
+}
+function addSpRow(){SP.rows.push({label:'New Row'});renderSpRows();}
+function buildSpecialGrid(){
+document.getElementById('sp-hdr-school').textContent=S.school;
+document.getElementById('sp-hdr-title').textContent=document.getElementById('sp-title').value;
+document.getElementById('sp-hdr-sub').textContent=document.getElementById('sp-dates').value;
+const rowLabel=document.getElementById('sp-rowlabel').value;
+const isExam=(SP.mode==='exam');
+const displayClasses=isExam?CLASSES:[''];
+let html=`<table class="sp-tbl" style="border-collapse:collapse;width:100%;font-size:.75rem"><thead><tr><th style="background:var(--navy);color:white;padding:5px 7px;border:1px solid #333;white-space:nowrap">${rowLabel}</th>
+${isExam?`<th style="background:var(--navy);color:white;padding:5px 7px;border:1px solid #333">CLASS</th>`:''}
+${SP.cols.map(c=>`<th style="background:var(--navy);color:white;padding:5px 7px;border:1px solid #333;min-width:120px"><div>${c.label}</div><div style="font-size:.6rem;font-weight:400;color:#aac">${c.time}</div></th>`).join('')}
+</tr></thead><tbody>`;
+SP.rows.forEach((row,ri)=>{
+const clsSpan=isExam?CLASSES.length:1;
+displayClasses.forEach((cls,ci)=>{
+html+=`<tr>`;
+if(ci===0) html+=`<td style="font-weight:700;border:1px solid #333;padding:4px 6px;background:#f8f8f8;vertical-align:middle" rowspan="${clsSpan}">${row.label}</td>`;
+if(isExam) html+=`<td style="font-weight:600;border:1px solid #333;padding:4px 6px;font-size:.72rem;background:#f0f4f8">${CL[cls]||cls}</td>`;
+SP.cols.forEach((col,ci2)=>{
+const key=`${ri}_${ci}_${ci2}`;
+const cell=SP.grid[key]||{};
+html+=`<td style="border:1px solid #333;padding:3px 4px;min-width:110px;vertical-align:top;cursor:pointer" onclick="openSpEdit('${key}','${row.label}','${col.label}','${cls}')"><div style="font-weight:700;font-size:.73rem;color:var(--navy)">${cell.subject||''}</div><div style="font-size:.65rem;color:#557">${cell.invigilator||''}</div><div style="font-size:.62rem;color:#888;font-style:italic">${cell.note||''}</div></td>`;
+});
+html+=`</tr>`;
+});
+html+=`<tr><td colspan="100" style="height:2px;background:#999;padding:0;border:none"></td></tr>`;
+});
+html+=`</tbody></table>`;
+document.getElementById('sp-grid').innerHTML=html;
+}
+let spEditCtx={};
+function openSpEdit(key,rowLabel,colLabel,cls){
+spEditCtx={key};
+const cell=SP.grid[key]||{};
+const existing=document.getElementById('sp-cell-modal');
+if(existing)existing.remove();
+const d=document.createElement('div');
+d.id='sp-cell-modal';
+d.className='mo open';
+d.innerHTML=`<div class="md"><h3 style="font-size:.85rem">${rowLabel} · ${colLabel}${cls?' · '+CL[cls]:''}</h3><div style="margin-bottom:7px"><label>Subject / Paper</label><select id="spe-subj" style="width:100%;margin-top:3px"><option value="">— empty —</option>
+${S.subjects.map(s=>`<option value="${s.name}" ${cell.subject===s.name?'selected':''}>${s.name}</option>`).join('')}
+<option value="__custom__">Type custom...</option></select><input id="spe-custom" placeholder="Custom subject/paper" style="width:100%;margin-top:4px;display:${cell.subject&&!S.subjects.find(s=>s.name===cell.subject)?'block':'none'}"></div><div style="margin-bottom:7px"><label>Invigilator / Teacher</label><select id="spe-tchr" style="width:100%;margin-top:3px"><option value="">— none —</option>
+${S.teachers.map(t=>`<option value="${t.name}" ${cell.invigilator===t.name?'selected':''}>${t.name}</option>`).join('')}
+</select></div><div style="margin-bottom:7px"><label>Note (optional)</label><input id="spe-note" value="${cell.note||''}" placeholder="e.g. Hall A, Room 4..." style="width:100%;margin-top:3px"></div><div class="ma"><button class="btn bd bsm" onclick="clearSpCell()">Clear</button><button class="btn bp bsm" onclick="saveSpCell()">Save</button><button class="btn bsm" style="background:#eee" onclick="document.getElementById('sp-cell-modal').remove()">Cancel</button></div></div>`;
+d.querySelector('#spe-subj').addEventListener('change',function(){
+d.querySelector('#spe-custom').style.display=this.value==='__custom__'?'block':'none';
+});
+document.body.appendChild(d);
+}
+function saveSpCell(){
+const{key}=spEditCtx;
+let subj=document.getElementById('spe-subj').value;
+if(subj==='__custom__') subj=document.getElementById('spe-custom').value.trim();
+const inv=document.getElementById('spe-tchr').value;
+const note=document.getElementById('spe-note').value.trim();
+SP.grid[key]={subject:subj,invigilator:inv,note};
+document.getElementById('sp-cell-modal').remove();
+buildSpecialGrid();
+}
+function clearSpCell(){
+SP.grid[spEditCtx.key]={};
+document.getElementById('sp-cell-modal').remove();
+buildSpecialGrid();
+}
+function loadDefaults(){
+S.teachers=[
+{name:'Peter Kiplagat',code:'PKK',role:'admin'},
+{name:'Benson',code:'BEN',role:''},
+{name:'Mwangi',code:'MWA',role:''},
+{name:'Rosebella',code:'ROS',role:''},
+{name:'Zipporah',code:'ZIP',role:''},
+];
+S.subjects=[
+{name:'Mathematics',code:'MATH',lessons:{GR7:{total:5,doubles:0},GR8E:{total:5,doubles:0},GR8W:{total:5,doubles:0},GR9:{total:5,doubles:0}}},
+{name:'English',code:'ENG',lessons:{GR7:{total:5,doubles:0},GR8E:{total:5,doubles:0},GR8W:{total:5,doubles:0},GR9:{total:5,doubles:0}}},
+{name:'Kiswahili',code:'KIS',lessons:{GR7:{total:4,doubles:0},GR8E:{total:4,doubles:0},GR8W:{total:4,doubles:0},GR9:{total:4,doubles:0}}},
+{name:'Science',code:'SCI',lessons:{GR7:{total:5,doubles:1},GR8E:{total:5,doubles:1},GR8W:{total:5,doubles:1},GR9:{total:5,doubles:1}}},
+{name:'Pre-Technical',code:'PTECH',lessons:{GR7:{total:4,doubles:0},GR8E:{total:4,doubles:0},GR8W:{total:4,doubles:0},GR9:{total:4,doubles:0}}},
+{name:'CRE',code:'CRE',lessons:{GR7:{total:4,doubles:0},GR8E:{total:4,doubles:0},GR8W:{total:4,doubles:0},GR9:{total:4,doubles:0}}},
+{name:'Social Studies',code:'SOC',lessons:{GR7:{total:4,doubles:0},GR8E:{total:4,doubles:0},GR8W:{total:4,doubles:0},GR9:{total:4,doubles:0}}},
+{name:'Agriculture',code:'AGRIC',lessons:{GR7:{total:4,doubles:0},GR8E:{total:4,doubles:0},GR8W:{total:4,doubles:0},GR9:{total:4,doubles:0}}},
+{name:'Creative Arts',code:'CART',lessons:{GR7:{total:5,doubles:0},GR8E:{total:5,doubles:0},GR8W:{total:5,doubles:0},GR9:{total:5,doubles:0}}},
+];
+const A=S.assignments;
+['GR7','GR8E','GR8W','GR9'].forEach(c=>{if(!A.SCI)A.SCI={};A.SCI[c]='PKK';});
+['GR7','GR8E','GR8W','GR9'].forEach(c=>{if(!A.AGRIC)A.AGRIC={};A.AGRIC[c]='PKK';});
+if(!A.PTECH)A.PTECH={};A.PTECH.GR9='PKK';
+['GR7','GR8E','GR8W','GR9'].forEach(c=>{if(!A.MATH)A.MATH={};A.MATH[c]='BEN';});
+A.PTECH.GR8E='BEN';A.PTECH.GR8W='BEN';
+if(!A.PTECH.GR7)A.PTECH.GR7='';
+['GR7','GR8E','GR8W','GR9'].forEach(c=>{if(!A.KIS)A.KIS={};A.KIS[c]='MWA';});
+if(!A.CART)A.CART={};A.CART.GR8E='MWA';A.CART.GR8W='MWA';
+['GR7','GR8E','GR8W','GR9'].forEach(c=>{if(!A.CRE)A.CRE={};A.CRE[c]='ROS';});
+['GR7','GR8E','GR8W','GR9'].forEach(c=>{if(!A.SOC)A.SOC={};A.SOC[c]='ROS';});
+['GR7','GR8E','GR8W','GR9'].forEach(c=>{if(!A.ENG)A.ENG={};A.ENG[c]='ZIP';});
+A.CART.GR7='ZIP';A.CART.GR9='ZIP';
+S.constraints=[
+{subj:'MATH',cls:'ALL',maxSlot:3,minSlot:0},
+{subj:'ENG',cls:'ALL',maxSlot:5,minSlot:0},
+];
+renderTeachers();renderSubjects();
+clearTimetable();
+setSpecialMode('exam',document.getElementById('sp-exam'));
+}
+loadDefaults();</script></body></html>
