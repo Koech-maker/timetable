@@ -7,7 +7,7 @@
  <b>LUNCH</b> 12:50–2:00 &nbsp;·&nbsp;
  Slot 7: 2:00–2:40 &nbsp;·&nbsp; Slot 8: 2:40–3:20 &nbsp;·&nbsp;
  <b>GAMES</b> 3:20–3:30
- </div></div></div><div id="tab-subjects" class="panel"><div class="card"><h3>📚 Subjects & Lesson Counts per Class</h3><div class="info">Doubles = consecutive 2-slot lessons. E.g. Science has 1 double + 3 singles = 5 total.</div><div class="frow"><div><label>Subject</label><input id="sj-name" placeholder="Mathematics" style="min-width:140px"></div><div><label>Code</label><input id="sj-code" placeholder="MATH" style="min-width:65px"></div><button class="btn bp" style="margin-top:18px" onclick="addSubject()">+ Add</button></div><div style="overflow-x:auto"><table class="dt" id="subj-table"><thead><tr id="subj-thead-row"><th>Subject</th><th>Code</th><th></th></tr></thead><tbody id="subj-tbody"></tbody></table></div></div></div><div id="tab-assign" class="panel"><div class="card"><h3>👨‍🏫 Quick Add / Manage Teachers</h3><div class="frow"><div><label>Name</label><input id="qa-name" placeholder="Teacher name" style="min-width:130px"></div><div><label>Code</label><input id="qa-code" placeholder="e.g. BMO" style="min-width:60px"></div><div><label>Role</label><select id="qa-role"><option value="">Teacher</option><option value="admin">Admin</option></select></div><button class="btn bp" style="margin-top:18px" onclick="quickAddTeacher()">+ Add Teacher</button></div><div style="overflow-x:auto;margin-top:6px"><table class="dt"><thead><tr><th>#</th><th>Name</th><th>Code</th><th>Role</th><th>Subjects Assigned</th><th>Action</th></tr></thead><tbody id="qa-teacher-tbody"></tbody></table></div></div><div class="card"><h3>📋 Subject → Class → Teacher Assignments</h3><div class="info">Click <b>✏️ Edit</b> on any cell to change or reallocate the teacher. Changes take effect immediately and are reflected in timetable generation.</div><div style="overflow-x:auto"><table class="dt" id="assign-table"><thead><tr id="assign-thead-row"><th>Subject</th><th>Code</th></tr></thead><tbody id="assign-tbody"></tbody></table></div></div></div><div class="mo" id="mo-assign"><div class="md"><h3 id="ma-title">Edit Assignment</h3><div id="ma-body"></div><div class="ma"><button class="btn bp bsm" onclick="saveAssign()">Save</button><button class="btn bsm" style="background:#eee" onclick="closeMo('mo-assign')">Cancel</button></div></div></div><div id="tab-constraints" class="panel"><div class="card"><h3>🔒 Subject Time Constraints</h3><div class="info">
+ </div></div></div><div id="tab-subjects" class="panel"><div class="card"><h3>📚 Subjects & Lesson Counts per Class</h3><div class="info">Doubles = consecutive 2-slot lessons. Only <b>one</b> subject may allow doubles at a time — tick "allows dbl" under a subject's code to designate it (this unticks any other). By default that's Science: 1 double + 3 singles = 5 total. Every subject appears at most once per day per class — no repeats.</div><div class="frow"><div><label>Subject</label><input id="sj-name" placeholder="Mathematics" style="min-width:140px"></div><div><label>Code</label><input id="sj-code" placeholder="MATH" style="min-width:65px"></div><button class="btn bp" style="margin-top:18px" onclick="addSubject()">+ Add</button></div><div style="overflow-x:auto"><table class="dt" id="subj-table"><thead><tr id="subj-thead-row"><th>Subject</th><th>Code</th><th></th></tr></thead><tbody id="subj-tbody"></tbody></table></div></div></div><div id="tab-assign" class="panel"><div class="card"><h3>👨‍🏫 Quick Add / Manage Teachers</h3><div class="frow"><div><label>Name</label><input id="qa-name" placeholder="Teacher name" style="min-width:130px"></div><div><label>Code</label><input id="qa-code" placeholder="e.g. BMO" style="min-width:60px"></div><div><label>Role</label><select id="qa-role"><option value="">Teacher</option><option value="admin">Admin</option></select></div><button class="btn bp" style="margin-top:18px" onclick="quickAddTeacher()">+ Add Teacher</button></div><div style="overflow-x:auto;margin-top:6px"><table class="dt"><thead><tr><th>#</th><th>Name</th><th>Code</th><th>Role</th><th>Subjects Assigned</th><th>Action</th></tr></thead><tbody id="qa-teacher-tbody"></tbody></table></div></div><div class="card"><h3>📋 Subject → Class → Teacher Assignments</h3><div class="info">Click <b>✏️ Edit</b> on any cell to change or reallocate the teacher. Changes take effect immediately and are reflected in timetable generation.</div><div style="overflow-x:auto"><table class="dt" id="assign-table"><thead><tr id="assign-thead-row"><th>Subject</th><th>Code</th></tr></thead><tbody id="assign-tbody"></tbody></table></div></div></div><div class="mo" id="mo-assign"><div class="md"><h3 id="ma-title">Edit Assignment</h3><div id="ma-body"></div><div class="ma"><button class="btn bp bsm" onclick="saveAssign()">Save</button><button class="btn bsm" style="background:#eee" onclick="closeMo('mo-assign')">Cancel</button></div></div></div><div id="tab-constraints" class="panel"><div class="card"><h3>🔒 Subject Time Constraints</h3><div class="info">
  Slot numbers: 1=8:20 · 2=9:00 · 3=9:50 · 4=10:30 · 5=11:30 · 6=12:10 · 7=2:00 · 8=2:40<br><b>Default:</b> Maths ≤ Slot 4 (before 2nd break) · English ≤ Slot 6 (before lunch)<br><b>💡 Priority tip:</b> Subjects with tighter constraints (fewer allowed slots) are automatically scheduled <b>first</b> during generation — so Maths and English will always grab their early slots before other subjects fill them.
  </div><div id="clist"></div><button class="btn bp bsm no-print" style="margin-top:6px" onclick="addCRow()">+ Add Constraint</button></div><div class="card"><h3>📅 Day Blocks</h3><div class="info">Prevent a subject appearing on specific days.</div><div id="dclist"></div><button class="btn bp bsm no-print" style="margin-top:6px" onclick="addDCRow()">+ Add Day Block</button></div></div><div id="tab-generate" class="panel"><div class="card"><h3>⚡ Generate Timetable</h3><div id="gen-status" style="display:none"></div><div class="frow"><div><label>Random Seed</label><input id="gen-seed" type="number" value="42" style="min-width:65px"></div><div><label>Max Attempts</label><input id="gen-max" type="number" value="2000" style="min-width:75px"></div></div><div style="display:flex;gap:7px;margin-top:7px"><button class="btn bg" onclick="generateTimetable()">⚡ Generate</button><button class="btn bd" onclick="clearTimetable();renderVerify()">🗑 Clear</button></div><div id="gen-log" style="display:none;margin-top:9px;font-size:.7rem;color:#557;max-height:140px;overflow-y:auto;background:var(--gray);padding:7px;border-radius:4px"></div></div><div class="card"><h3>📊 Lesson Count Verification</h3><div id="verify-table"></div></div></div><div id="tab-view" class="panel"><div class="no-print"><div class="vsel" id="view-btns"></div><div style="display:flex;gap:6px;margin-bottom:9px;flex-wrap:wrap;align-items:center"><button class="btn bs bsm" onclick="printArea('class-print-area')">🖨 Print</button><button class="btn bp bsm" onclick="downloadPDF('class-print-area','class')">⬇ Download PDF</button><button class="btn bg bsm" onclick="exportHTML('class')">💾 Save HTML</button><span style="font-size:.68rem;color:#778;font-style:italic;align-self:center">Click any cell to edit</span></div></div><div id="class-print-area"><div id="class-hdr" style="text-align:center;margin-bottom:8px"><div id="ch-school" style="font-size:.78rem;font-weight:700;letter-spacing:2px;text-transform:uppercase">SISION JUNIOR SCHOOL — NAIVASHA</div><div id="ch-title" style="font-size:1rem;font-weight:900;letter-spacing:1px;color:var(--gold)">JUNIOR SCHOOL TIMETABLE</div><div id="ch-sub" style="font-size:.72rem;letter-spacing:.5px">GRADE: 7 &nbsp;|&nbsp; TERM: 2 &nbsp;|&nbsp; YEAR: 2026</div></div><div class="card"><div style="overflow-x:auto" id="class-display"></div></div></div></div><div id="tab-teacher" class="panel"><div class="no-print" style="margin-bottom:10px"><div class="frow" style="flex-wrap:wrap;gap:6px;align-items:flex-end"><div><label>Select Teacher</label><select id="tv-sel" onchange="renderTeacherView()" style="min-width:160px"></select></div><button class="btn bs bsm" onclick="printArea('teacher-print-area')" style="margin-top:18px">🖨 Print</button><button class="btn bp bsm" onclick="downloadPDF('teacher-print-area','teacher')" style="margin-top:18px">⬇ Download PDF</button><button class="btn bg bsm" onclick="exportHTML('teacher')" style="margin-top:18px">💾 Save HTML</button></div></div><div id="teacher-print-area"><div id="teacher-hdr" style="margin-bottom:7px"><div style="font-size:.78rem;font-weight:700;letter-spacing:2px;text-align:center" id="th-school">SISION JUNIOR SCHOOL — NAIVASHA</div><div style="font-size:.95rem;font-weight:900;letter-spacing:1px;text-align:center" id="th-title">TEACHER TIMETABLE — KOECH</div><div style="font-size:.72rem;text-align:center" id="th-sub">TERM: 2 &nbsp;|&nbsp; YEAR: 2026</div></div><div class="card"><div style="overflow-x:auto" id="teacher-display"></div></div><div id="teacher-summary" class="tsummary"></div></div></div><div id="tab-special" class="panel"><div class="card"><h3>📋 Special Timetable Designer</h3><div class="info">Create exam timetables, remedial timetables, revision schedules etc. Fully separate from the main timetable.</div><div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px"><button class="vb active" id="sp-exam" onclick="setSpecialMode('exam',this)">📝 Exam</button><button class="vb" id="sp-remedial" onclick="setSpecialMode('remedial',this)">🌅 Remedial</button><button class="vb" id="sp-revision" onclick="setSpecialMode('revision',this)">📖 Revision</button><button class="vb" id="sp-custom" onclick="setSpecialMode('custom',this)">✏️ Custom</button></div><div class="frow"><div><label>Title</label><input id="sp-title" value="END TERM 2 EXAMINATIONS" style="min-width:220px"></div><div><label>Subtitle / Date Range</label><input id="sp-dates" value="14th July – 18th July 2026" style="min-width:200px"></div></div><div class="frow"><div><label>Rows label</label><input id="sp-rowlabel" value="DATE / CLASS" style="min-width:130px"></div><div><label>Column header</label><input id="sp-collabel" value="SESSION" style="min-width:120px"></div></div></div><div class="card"><h3>🕐 Sessions / Columns</h3><div class="info">For exams: e.g. PP1 (8:20–10:20), PP2 (11:00–1:00). For remedial: Morning (6:00–7:30), Evening (4:00–5:30).</div><div id="sp-cols-list"></div><button class="btn bp bsm" onclick="addSpCol()" style="margin-top:6px">+ Add Session</button></div><div class="card"><h3>📅 Rows (Dates or Days)</h3><div id="sp-rows-list"></div><button class="btn bp bsm" onclick="addSpRow()" style="margin-top:6px">+ Add Row</button></div><div class="card"><h3>📋 Timetable Grid</h3><div class="no-print" style="display:flex;gap:6px;margin-bottom:8px;flex-wrap:wrap"><button class="btn bg bsm" onclick="buildSpecialGrid()">🔄 Build / Refresh Grid</button><button class="btn bs bsm" onclick="printArea('sp-print-area')">🖨 Print</button><button class="btn bp bsm" onclick="downloadPDF('sp-print-area','special')">⬇ Download PDF</button><button class="btn bg bsm" onclick="exportHTML('special')">💾 Save HTML</button></div><div id="sp-print-area"><div style="text-align:center;margin-bottom:8px"><div style="font-size:.78rem;font-weight:700;letter-spacing:2px" id="sp-hdr-school">SISION JUNIOR SCHOOL — NAIVASHA</div><div style="font-size:1rem;font-weight:900;letter-spacing:1px" id="sp-hdr-title">END TERM 2 EXAMINATIONS</div><div style="font-size:.72rem" id="sp-hdr-sub">14th July – 18th July 2026</div></div><div style="overflow-x:auto"><div id="sp-grid"></div></div></div></div></div><div class="mo" id="mo-edit"><div class="md"><h3 id="me-title">Edit Lesson</h3><div id="me-body"></div><div class="ma"><button class="btn bd bsm" onclick="clearCell()">Clear Cell</button><button class="btn bp bsm" onclick="saveCell()">Save</button><button class="btn bsm" style="background:#eee" onclick="closeMo('mo-edit')">Cancel</button></div></div></div><script>let CLASSES=['GR7','GR8E','GR8W','GR9'];
 let CL={GR7:'GR 7',GR8E:'GR 8E',GR8W:'GR 8W',GR9:'GR 9'};
@@ -138,7 +138,7 @@ const code=document.getElementById('sj-code').value.trim().toUpperCase();
 if(!name||!code)return alert('Enter name and code');
 if(S.subjects.find(s=>s.code===code))return alert('Code exists');
 const lessons={};CLASSES.forEach(c=>{lessons[c]={total:4,doubles:0};});
-S.subjects.push({name,code,lessons});
+S.subjects.push({name,code,allowDouble:false,lessons});
 document.getElementById('sj-name').value='';
 document.getElementById('sj-code').value='';
 renderSubjects();
@@ -149,11 +149,37 @@ if(thr)thr.innerHTML=`<th>Subject</th><th>Code</th>${CLASSES.map(c=>`<th>${CL[c]
 const tb=document.getElementById('subj-tbody');
 if(!S.subjects.length){tb.innerHTML=`<tr><td colspan="${3+CLASSES.length*2}" class="empty">No subjects</td></tr>`;return;}
 S.subjects.forEach(s=>{CLASSES.forEach(cls=>{if(!s.lessons[cls])s.lessons[cls]={total:4,doubles:0};});});
-tb.innerHTML=S.subjects.map((s,i)=>`<tr><td><b>${s.name}</b></td><td><span class="badge bn">${s.code}</span></td>
+tb.innerHTML=S.subjects.map((s,i)=>`<tr><td><b>${s.name}</b></td><td><input value="${s.code}" style="width:64px;font-weight:700;text-transform:uppercase" maxlength="8" onchange="renameSubjectCode(${i},this.value)"><label style="display:block;font-size:.6rem;font-weight:400;margin-top:2px;white-space:nowrap"><input type="checkbox" ${s.allowDouble?'checked':''} onchange="setAllowDouble(${i},this.checked)"> allows dbl</label></td>
 ${CLASSES.map(cls=>`
-<td><input type="number" min="0" max="10" value="${s.lessons[cls].total}" style="width:42px" onchange="S.subjects[${i}].lessons['${cls}'].total=+this.value"></td><td><input type="number" min="0" max="4" value="${s.lessons[cls].doubles}" style="width:36px" onchange="S.subjects[${i}].lessons['${cls}'].doubles=+this.value"></td>
+<td><input type="number" min="0" max="10" value="${s.lessons[cls].total}" style="width:42px" onchange="S.subjects[${i}].lessons['${cls}'].total=+this.value"></td><td><input type="number" min="0" max="4" value="${s.allowDouble?s.lessons[cls].doubles:0}" style="width:36px" ${s.allowDouble?'':'disabled title="Only the subject marked as Science may have double lessons"'} onchange="S.subjects[${i}].lessons['${cls}'].doubles=+this.value"></td>
 `).join('')}
 <td><button class="btn bd bsm" onclick="S.subjects.splice(${i},1);renderSubjects()">✕</button></td></tr>`).join('');
+}
+function setAllowDouble(i,checked){
+if(checked){
+S.subjects.forEach((s,xi)=>{
+s.allowDouble=(xi===i);
+if(xi!==i)CLASSES.forEach(c=>{if(s.lessons[c])s.lessons[c].doubles=0;});
+});
+}else{
+S.subjects[i].allowDouble=false;
+CLASSES.forEach(c=>{if(S.subjects[i].lessons[c])S.subjects[i].lessons[c].doubles=0;});
+}
+renderSubjects();
+}
+function renameSubjectCode(i,newCodeRaw){
+const s=S.subjects[i];
+const newCode=(newCodeRaw||'').trim().toUpperCase();
+if(!newCode){renderSubjects();return alert('Code cannot be empty');}
+if(S.subjects.some((x,xi)=>xi!==i&&x.code===newCode)){renderSubjects();return alert('That code is already used by another subject');}
+const oldCode=s.code;
+if(oldCode===newCode)return;
+s.code=newCode;
+if(S.assignments[oldCode]){S.assignments[newCode]=S.assignments[oldCode];delete S.assignments[oldCode];}
+(S.constraints||[]).forEach(c=>{if(c.subj===oldCode)c.subj=newCode;});
+(S.dayConstraints||[]).forEach(c=>{if(c.subj===oldCode)c.subj=newCode;});
+document.querySelectorAll('.cr-s option,.dc-s option').forEach(o=>{if(o.value===oldCode)o.value=newCode;});
+renderSubjects();renderAssignments();renderVerify();
 }
 function quickAddTeacher(){
 const name=document.getElementById('qa-name').value.trim();
@@ -311,7 +337,7 @@ CLASSES.forEach(cls=>{
 S.subjects.forEach(s=>{
 const lc=s.lessons[cls];
 const teacher=S.assignments[s.code]?.[cls]||'';
-const dbl=lc.doubles||0;
+const dbl=s.allowDouble?(lc.doubles||0):0;
 const singles=(lc.total||0)-dbl*2;
 if(singles<0)return;
 const{max,min}=getConstraint(s.code,cls);
@@ -333,6 +359,8 @@ const cands=[];
 const dayOrder=shuffle([...DAYS]);
 for(const day of dayOrder){
 if(isDayBlocked(item.subj,day))continue;
+const dayAlreadyHasSubj=S.timetable[item.cls][day].some(cell=>cell&&cell.subj===item.subj);
+if(dayAlreadyHasSubj)continue;
 if(item.isDouble){
 for(const [s1,s2] of DOUBLE_PAIRS){
 if(s1<min||s2>max)continue;
@@ -645,11 +673,44 @@ if(S.timetable[cls]?.[day])S.timetable[cls][day][si]=null;
 closeMo('mo-edit');renderClassView();
 }
 function closeMo(id){document.getElementById(id).classList.remove('open');}
+function pfTypeFromArea(areaId){
+if(areaId==='teacher-print-area')return'teacher';
+if(areaId==='sp-print-area')return'special';
+return'class';
+}
+function fillPageCSS(type){
+const isTeacher=type==='teacher';
+const h=isTeacher?'142mm':'188mm';
+const tSize=isTeacher?'11.5pt':'13pt';
+const lsSize=isTeacher?'10.5pt':'12pt';
+const ltSize=isTeacher?'9pt':'10pt';
+const pcSize=isTeacher?'13pt':'16pt';
+const pad=isTeacher?'6px 5px':'9px 6px';
+return`
+*{box-sizing:border-box;}
+html,body{height:100%;}
+body{margin:0;padding:0;background:white;font-family:'Segoe UI',Arial,sans-serif;}
+.no-print,.tabs,.hdr,button{display:none!important;}
+@page{size:A4 landscape;margin:10mm;}
+.pf{display:flex;flex-direction:column;height:${h};}
+.pf .card{flex:1;display:flex;flex-direction:column;min-height:0;border:none;box-shadow:none;padding:0;}
+.pf .card>div{flex:1;display:flex;flex-direction:column;min-height:0;}
+.pf table{width:100%!important;height:100%!important;border-collapse:collapse;}
+.pf .ctt,.pf .ttt{font-size:${tSize}!important;}
+.pf .ctt th,.pf .ctt td,.pf .ttt th,.pf .ttt td{padding:${pad}!important;}
+.pf .ls{font-size:${lsSize}!important;}
+.pf .lt{font-size:${ltSize}!important;}
+.pf .pc{font-size:${pcSize}!important;}
+.pf .dy{font-size:${isTeacher?'11pt':'13pt'}!important;}
+.pf #teacher-summary,.pf .tsummary{font-size:10pt!important;margin-top:6px;flex:none;}
+`;
+}
 function printArea(areaId){
 const area=document.getElementById(areaId);
 const styles=document.querySelector('style').innerHTML;
+const type=pfTypeFromArea(areaId);
 const win=window.open('','_blank');
-win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><style>${styles}*{box-sizing:border-box;}body{margin:0;padding:10px;background:white;font-family:'Segoe UI',Arial,sans-serif;}.no-print,.tabs,.hdr,button{display:none!important;}@page{size:A4 landscape;margin:10mm;}@media print{body{padding:0;}table{width:100%!important;font-size:8pt!important;}.ctt,.ttt{font-size:7.5pt!important;}.ctt th,.ctt td,.ttt th,.ttt td{padding:2px!important;}}</style></head><body>${area.innerHTML}</body></html>`);
+win.document.write(`<!DOCTYPE html><html><head><meta charset="UTF-8"><style>${styles}${fillPageCSS(type)}</style></head><body><div class="pf pf-${type}">${area.innerHTML}</div></body></html>`);
 win.document.close();
 win.focus();
 setTimeout(()=>{win.print();win.close();},400);
@@ -657,7 +718,7 @@ setTimeout(()=>{win.print();win.close();},400);
 function downloadPDF(areaId,type){
 const area=document.getElementById(areaId);
 const styles=document.querySelector('style').innerHTML;
-const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"><style>${styles}*{box-sizing:border-box;}body{margin:0;padding:8mm;background:white;font-family:'Segoe UI',Arial,sans-serif;}.no-print,.tabs,.hdr,button{display:none!important;}table{width:100%!important;border-collapse:collapse;}.ctt,.ttt,.sp-tbl{font-size:7.5pt!important;}.ctt th,.ctt td,.ttt th,.ttt td,.sp-tbl th,.sp-tbl td{padding:2px 3px!important;}.lc{min-width:50px!important;}.ls{font-size:7pt!important;}.lt{font-size:6pt!important;}.pc{width:18px!important;font-size:9pt!important;}.dy{width:28px!important;}</style></head><body>${area.innerHTML}</body></html>`;
+const html=`<!DOCTYPE html><html><head><meta charset="UTF-8"><style>${styles}${fillPageCSS(type)}</style></head><body><div class="pf pf-${type}">${area.innerHTML}</div></body></html>`;
 const blob=new Blob([html],{type:'text/html'});
 const a=document.createElement('a');
 a.href=URL.createObjectURL(blob);
@@ -670,7 +731,7 @@ function exportHTML(type){
 const areaMap={class:'class-print-area',teacher:'teacher-print-area',special:'sp-print-area'};
 const area=document.getElementById(areaMap[type]||'class-print-area');
 const styles=document.querySelector('style').innerHTML;
-const blob=new Blob([`<!DOCTYPE html><html><head><meta charset="UTF-8"><style>${styles}.no-print{display:none}.tabs,.hdr{display:none}</style></head><body style="padding:16px;background:white">${area.innerHTML}</body></html>`],{type:'text/html'});
+const blob=new Blob([`<!DOCTYPE html><html><head><meta charset="UTF-8"><style>${styles}.no-print{display:none}.tabs,.hdr{display:none}@media print{${fillPageCSS(type)}}</style></head><body style="padding:16px;background:white"><div class="pf pf-${type}">${area.innerHTML}</div></body></html>`],{type:'text/html'});
 const a=document.createElement('a');a.href=URL.createObjectURL(blob);
 a.download=`sision_${type}_T${S.term}_${S.year}.html`;a.click();
 }
@@ -841,7 +902,7 @@ S.subjects=[
 {name:'Mathematics',code:'MATH',lessons:{GR7:{total:5,doubles:0},GR8E:{total:5,doubles:0},GR8W:{total:5,doubles:0},GR9:{total:5,doubles:0}}},
 {name:'English',code:'ENG',lessons:{GR7:{total:5,doubles:0},GR8E:{total:5,doubles:0},GR8W:{total:5,doubles:0},GR9:{total:5,doubles:0}}},
 {name:'Kiswahili',code:'KIS',lessons:{GR7:{total:4,doubles:0},GR8E:{total:4,doubles:0},GR8W:{total:4,doubles:0},GR9:{total:4,doubles:0}}},
-{name:'Science',code:'SCI',lessons:{GR7:{total:5,doubles:1},GR8E:{total:5,doubles:1},GR8W:{total:5,doubles:1},GR9:{total:5,doubles:1}}},
+{name:'Science',code:'SCI',allowDouble:true,lessons:{GR7:{total:5,doubles:1},GR8E:{total:5,doubles:1},GR8W:{total:5,doubles:1},GR9:{total:5,doubles:1}}},
 {name:'Pre-Technical',code:'PTECH',lessons:{GR7:{total:4,doubles:0},GR8E:{total:4,doubles:0},GR8W:{total:4,doubles:0},GR9:{total:4,doubles:0}}},
 {name:'CRE',code:'CRE',lessons:{GR7:{total:4,doubles:0},GR8E:{total:4,doubles:0},GR8W:{total:4,doubles:0},GR9:{total:4,doubles:0}}},
 {name:'Social Studies',code:'SOC',lessons:{GR7:{total:4,doubles:0},GR8E:{total:4,doubles:0},GR8W:{total:4,doubles:0},GR9:{total:4,doubles:0}}},
